@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.controller.MainViewController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+
+    <Label text="RU Donuts">
+        <font>
+            <Font name="System Bold" size="32.0"/>
+        </font>
+    </Label>
+
+    <Label text="Order Management System">
+        <font>
+            <Font size="18.0"/>
+        </font>
+    </Label>
+
+    <VBox spacing="15.0" alignment="CENTER">
+        <padding>
+            <Insets top="30.0"/>
+        </padding>
+
+        <Button fx:id="orderDonutsButton" text="Order Donuts" prefWidth="250" prefHeight="50"
+                onAction="#onOrderDonuts">
+            <font>
+                <Font size="16.0"/>
+            </font>
+        </Button>
+
+        <Button fx:id="orderSandwichButton" text="Order Sandwich" prefWidth="250" prefHeight="50"
+                onAction="#onOrderSandwich">
+            <font>
+                <Font size="16.0"/>
+            </font>
+        </Button>
+
+        <Button fx:id="orderCoffeeButton" text="Order Coffee" prefWidth="250" prefHeight="50"
+                onAction="#onOrderCoffee">
+            <font>
+                <Font size="16.0"/>
+            </font>
+        </Button>
+
+        <Button fx:id="viewCurrentOrderButton" text="View Current Order" prefWidth="250" prefHeight="50"
+                onAction="#onViewCurrentOrder">
+            <font>
+                <Font size="16.0"/>
+            </font>
+        </Button>
+
+        <Button fx:id="viewAllOrdersButton" text="View All Orders" prefWidth="250" prefHeight="50"
+                onAction="#onViewAllOrders">
+            <font>
+                <Font size="16.0"/>
+            </font>
+        </Button>
+    </VBox>
+
+    <Label fx:id="statusLabel" text="" textFill="GREEN">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Label>
+</VBox>

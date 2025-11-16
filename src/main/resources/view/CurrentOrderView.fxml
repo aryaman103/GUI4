@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<VBox spacing="15.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.controller.CurrentOrderViewController" prefWidth="600" prefHeight="500">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+
+    <Label fx:id="orderNumberLabel" text="Current Order #1">
+        <font>
+            <Font name="System Bold" size="24.0"/>
+        </font>
+    </Label>
+
+    <Label text="Order Items:">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Label>
+
+    <ListView fx:id="orderItemsListView" VBox.vgrow="ALWAYS"/>
+
+    <GridPane hgap="10" vgap="5">
+        <columnConstraints>
+            <ColumnConstraints hgrow="ALWAYS"/>
+            <ColumnConstraints hgrow="NEVER" minWidth="100"/>
+        </columnConstraints>
+
+        <Label text="Subtotal:" GridPane.columnIndex="0" GridPane.rowIndex="0">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Label>
+        <Label fx:id="subtotalLabel" text="$0.00" GridPane.columnIndex="1" GridPane.rowIndex="0"
+               GridPane.halignment="RIGHT">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Label>
+
+        <Label text="Sales Tax (6.625%):" GridPane.columnIndex="0" GridPane.rowIndex="1">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Label>
+        <Label fx:id="taxLabel" text="$0.00" GridPane.columnIndex="1" GridPane.rowIndex="1"
+               GridPane.halignment="RIGHT">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Label>
+
+        <Separator GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.columnSpan="2"/>
+
+        <Label text="Total:" GridPane.columnIndex="0" GridPane.rowIndex="3">
+            <font>
+                <Font name="System Bold" size="16.0"/>
+            </font>
+        </Label>
+        <Label fx:id="totalLabel" text="$0.00" GridPane.columnIndex="1" GridPane.rowIndex="3"
+               GridPane.halignment="RIGHT">
+            <font>
+                <Font name="System Bold" size="16.0"/>
+            </font>
+        </Label>
+    </GridPane>
+
+    <HBox spacing="10.0">
+        <Button text="Remove Selected Item" onAction="#onRemoveItem" prefWidth="150"/>
+        <Button text="Clear All Items" onAction="#onClearAll" prefWidth="150"/>
+        <Button text="Place Order" onAction="#onPlaceOrder" prefWidth="150"/>
+        <Button text="Close" onAction="#onClose" prefWidth="100"/>
+    </HBox>
+
+    <Label fx:id="statusLabel" text="" textFill="GREEN">
+        <font>
+            <Font size="12.0"/>
+        </font>
+    </Label>
+</VBox>

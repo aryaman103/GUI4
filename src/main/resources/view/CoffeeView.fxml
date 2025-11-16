@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<VBox spacing="15.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.controller.CoffeeViewController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+
+    <Label text="Order Coffee">
+        <font>
+            <Font name="System Bold" size="24.0"/>
+        </font>
+    </Label>
+
+    <HBox spacing="20.0">
+        <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+            <Label text="Cup Size:">
+                <font>
+                    <Font size="14.0"/>
+                </font>
+            </Label>
+            <ComboBox fx:id="cupSizeComboBox" prefWidth="200" onAction="#updatePrice"/>
+
+            <Label text="Add-Ins:">
+                <font>
+                    <Font size="14.0"/>
+                </font>
+            </Label>
+            <CheckBox fx:id="whippedCreamCheckBox" text="Whipped Cream (+$0.25)" onAction="#updatePrice"/>
+            <CheckBox fx:id="vanillaCheckBox" text="Vanilla (+$0.25)" onAction="#updatePrice"/>
+            <CheckBox fx:id="milkCheckBox" text="2% Milk (+$0.25)" onAction="#updatePrice"/>
+            <CheckBox fx:id="caramelCheckBox" text="Caramel (+$0.25)" onAction="#updatePrice"/>
+            <CheckBox fx:id="mochaCheckBox" text="Mocha (+$0.25)" onAction="#updatePrice"/>
+
+            <Label text="Quantity:">
+                <font>
+                    <Font size="14.0"/>
+                </font>
+            </Label>
+            <Spinner fx:id="quantitySpinner" prefWidth="200" editable="true"/>
+
+            <Label fx:id="priceLabel" text="Price: $0.00">
+                <font>
+                    <Font name="System Bold" size="16.0"/>
+                </font>
+            </Label>
+
+            <HBox spacing="10.0">
+                <Button text="Add to Order" onAction="#onAddToOrder" prefWidth="120"/>
+                <Button text="Close" onAction="#onClose" prefWidth="120"/>
+            </HBox>
+
+            <Label fx:id="statusLabel" text="" textFill="GREEN">
+                <font>
+                    <Font size="12.0"/>
+                </font>
+            </Label>
+        </VBox>
+
+        <VBox alignment="CENTER">
+            <ImageView fx:id="coffeeImageView" fitHeight="250" fitWidth="250" preserveRatio="true"/>
+        </VBox>
+    </HBox>
+</VBox>
