@@ -2,11 +2,18 @@ package org.example.controller;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.stage.Stage;
-import org.example.model.*;
+import org.example.model.CakeDonut;
+import org.example.model.DonutHole;
+import org.example.model.MenuItem;
+import org.example.model.Order;
+import org.example.model.SeasonalDonut;
+import org.example.model.YeastDonut;
 
 import java.util.Arrays;
 import java.util.List;
@@ -32,9 +39,6 @@ public class DonutViewController implements BaseOrderController {
 
     @FXML
     private Label statusLabel;
-
-    @FXML
-    private ImageView donutImageView;
 
     private Order currentOrder;
 
@@ -92,39 +96,20 @@ public class DonutViewController implements BaseOrderController {
         switch (selectedType) {
             case "Yeast Donut":
                 flavorListView.setItems(FXCollections.observableArrayList(yeastFlavors));
-                loadImage("yeast");
                 break;
             case "Cake Donut":
                 flavorListView.setItems(FXCollections.observableArrayList(cakeFlavors));
-                loadImage("cake");
                 break;
             case "Donut Holes":
                 flavorListView.setItems(FXCollections.observableArrayList(donutHoleFlavors));
-                loadImage("holes");
                 break;
             case "Seasonal Donut":
                 flavorListView.setItems(FXCollections.observableArrayList(seasonalFlavors));
-                loadImage("seasonal");
                 break;
         }
 
         flavorListView.getSelectionModel().selectFirst();
         updatePrice();
-    }
-
-    /**
-     * Loads the donut image based on type.
-     * @param type the donut type
-     */
-    private void loadImage(String type) {
-        try {
-            String imagePath = "/images/donut_" + type + ".png";
-            Image image = new Image(getClass().getResourceAsStream(imagePath));
-            donutImageView.setImage(image);
-        } catch (Exception e) {
-            // Image not found, use placeholder or leave empty
-            donutImageView.setImage(null);
-        }
     }
 
     /**

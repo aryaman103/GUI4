@@ -2,10 +2,16 @@ package org.example.controller;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import org.example.model.*;
+import org.example.model.MenuItem;
+import org.example.model.Order;
+import org.example.model.OrderManager;
 
 import java.io.File;
 import java.io.IOException;
@@ -72,13 +78,18 @@ public class AllOrdersViewController implements BaseOrderController {
      * Handles order selection from the list.
      */
     private void onOrderSelected() {
-        int selectedIndex = ordersListView.getSelectionModel().getSelectedIndex();
-        if (selectedIndex < 0 || selectedIndex >= orderManager.getAllOrders().size()) {
-            return;
-        }
+        try {
+            int selectedIndex = ordersListView.getSelectionModel().getSelectedIndex();
+            if (selectedIndex < 0 || orderManager.getAllOrders().isEmpty() ||
+                selectedIndex >= orderManager.getAllOrders().size()) {
+                return;
+            }
 
-        Order selectedOrder = orderManager.getAllOrders().get(selectedIndex);
-        displayOrderDetails(selectedOrder);
+            Order selectedOrder = orderManager.getAllOrders().get(selectedIndex);
+            displayOrderDetails(selectedOrder);
+        } catch (Exception e) {
+            // Silently handle selection errors
+        }
     }
 
     /**
@@ -86,9 +97,15 @@ public class AllOrdersViewController implements BaseOrderController {
      * @param order the order to display
      */
     private void displayOrderDetails(Order order) {
+        if (order == null) {
+            orderDetailsTextArea.setText("No order selected.");
+            clearTotals();
+            return;
+        }
+
         StringBuilder sb = new StringBuilder();
         sb.append("Order #").append(order.getOrderNumber()).append("\n");
-        sb.append("=" .repeat(40)).append("\n\n");
+        sb.append("=".repeat(40)).append("\n\n");
 
         for (MenuItem item : order.getMenuItems()) {
             sb.append(item.toString()).append("\n");

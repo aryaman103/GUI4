@@ -2,9 +2,14 @@ package org.example.controller;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.stage.Stage;
-import org.example.model.*;
+import org.example.model.MenuItem;
+import org.example.model.Order;
+import org.example.model.OrderManager;
 
 /**
  * Controller for the current order view.
@@ -40,6 +45,8 @@ public class CurrentOrderViewController implements BaseOrderController {
     @FXML
     public void initialize() {
         orderManager = OrderManager.getInstance();
+        // Initialize with empty display
+        updateDisplay();
     }
 
     /**
@@ -56,7 +63,14 @@ public class CurrentOrderViewController implements BaseOrderController {
      * Updates the display with current order information.
      */
     private void updateDisplay() {
-        if (currentOrder == null) return;
+        if (currentOrder == null) {
+            orderNumberLabel.setText("No Order");
+            orderItemsListView.setItems(FXCollections.observableArrayList());
+            subtotalLabel.setText("$0.00");
+            taxLabel.setText("$0.00");
+            totalLabel.setText("$0.00");
+            return;
+        }
 
         orderNumberLabel.setText("Current Order #" + currentOrder.getOrderNumber());
 

@@ -1,0 +1,240 @@
+HOW TO RUN & TEST RU DONUTS APPLICATION
+========================================
+
+OPTION 1: USING INTELLIJ IDEA (RECOMMENDED)
+============================================
+
+Step 1: Open the Project
+-------------------------
+1. Launch IntelliJ IDEA
+2. Click "Open" or File > Open
+3. Navigate to and select the "GUI4" folder
+4. Click "Open"
+
+Step 2: Wait for Maven Import
+------------------------------
+1. IntelliJ will show a notification about Maven projects
+2. Click "Load" or "Import" if prompted
+3. Wait for dependencies to download (bottom right corner shows progress)
+4. This may take 1-2 minutes the first time
+
+Step 3: Configure JDK (if needed)
+----------------------------------
+1. File > Project Structure > Project
+2. Set SDK to Java 17 or higher
+3. Click "Apply" and "OK"
+
+Step 4: Run the Application
+----------------------------
+Method A - Using Run Configuration:
+1. Navigate to: src/main/java/org/example/RUDonutsApp.java
+2. Right-click on the file
+3. Select "Run 'RUDonutsApp.main()'"
+
+Method B - Using Green Play Button:
+1. Open RUDonutsApp.java
+2. Look for the green ▶ button next to "public class RUDonutsApp"
+3. Click it and select "Run"
+
+Step 5: Test the Application
+-----------------------------
+The main window should appear with these buttons:
+- Order Donuts
+- Order Sandwich
+- Order Coffee
+- View Current Order
+- View All Orders
+
+
+TESTING CHECKLIST
+==================
+
+✓ Test Donut Ordering:
+----------------------
+1. Click "Order Donuts"
+2. Select "Yeast Donut" from dropdown
+3. Verify flavors appear (Glazed, Jelly, etc.)
+4. Select a flavor
+5. Change quantity to 3
+6. Verify price shows: $5.97 (3 × $1.99)
+7. Try other donut types (Cake, Holes, Seasonal)
+8. Click "Add to Order"
+9. Verify success message appears
+
+✓ Test Sandwich Ordering:
+--------------------------
+1. Click "Order Sandwich"
+2. Select "Chicken" protein
+3. Select "Bagel" bread
+4. Check "Lettuce" and "Tomatoes"
+5. Set quantity to 1
+6. Verify price shows: $11.59
+7. Click "Add to Order"
+
+✓ Test Coffee Ordering:
+------------------------
+1. Click "Order Coffee"
+2. Select "Tall" size
+3. Check "Whipped Cream" and "Vanilla"
+4. Set quantity to 1
+5. Verify price shows: $3.49
+6. Click "Add to Order"
+
+✓ Test Current Order:
+---------------------
+1. Click "View Current Order"
+2. Verify all added items appear
+3. Check subtotal calculation
+4. Check tax (6.625%)
+5. Check total
+6. Try "Remove Selected Item"
+7. Try "Clear All Items"
+
+✓ Test Place Order:
+-------------------
+1. Add several items to order
+2. Click "View Current Order"
+3. Click "Place Order"
+4. Confirm in dialog
+5. Verify order is placed
+
+✓ Test All Orders:
+------------------
+1. Click "View All Orders"
+2. Verify placed orders appear
+3. Select an order to view details
+4. Try "Export Orders"
+5. Save to a text file
+6. Open the file to verify contents
+
+✓ Test Cancel Order:
+--------------------
+1. In "View All Orders"
+2. Select an order
+3. Click "Cancel Selected Order"
+4. Confirm in dialog
+5. Verify order is removed
+
+
+RUNNING JUNIT TESTS
+====================
+
+In IntelliJ:
+------------
+1. Right-click on "src/test/java" folder
+2. Select "Run 'All Tests'"
+
+OR
+
+1. Open SandwichTest.java or CoffeeTest.java
+2. Click green ▶ next to class name
+3. Select "Run 'SandwichTest'"
+
+Expected Results:
+-----------------
+✓ SandwichTest.testChickenSandwichPrice - PASSED
+✓ SandwichTest.testBeefSandwichWithAllAddOns - PASSED
+✓ CoffeeTest.testShortCoffeeNoAddIns - PASSED
+✓ CoffeeTest.testTallCoffeeWithTwoAddIns - PASSED
+✓ CoffeeTest.testVentiCoffeeWithAllAddIns - PASSED
+
+All 5 tests should PASS.
+
+
+TROUBLESHOOTING
+===============
+
+Problem: "Cannot resolve symbol 'javafx'"
+Solution:
+- File > Invalidate Caches > Invalidate and Restart
+- Wait for Maven to re-import dependencies
+
+Problem: "Module not found: javafx.controls"
+Solution:
+- Make sure module-info.java exists in src/main/java/
+- Rebuild project: Build > Rebuild Project
+
+Problem: Application won't start
+Solution:
+- Check Run Configuration
+- Edit Configurations > Add VM options:
+  --module-path /path/to/javafx/lib --add-modules javafx.controls,javafx.fxml
+- Or let IntelliJ handle it automatically (should work with pom.xml)
+
+Problem: "Error: JavaFX runtime components are missing"
+Solution:
+- This means Maven dependencies didn't load
+- Try: File > Reload All Maven Projects (right-click pom.xml)
+
+Problem: Tests won't run
+Solution:
+- Right-click on pom.xml
+- Maven > Reload Project
+- Wait for dependencies to download
+
+
+PRICE VERIFICATION
+==================
+
+When testing, verify these prices:
+
+Donuts:
+- Yeast × 1 = $1.99
+- Cake × 1 = $2.19
+- Holes × 1 = $0.39
+- Seasonal × 1 = $2.49
+
+Coffee:
+- Short = $2.39
+- Tall = $2.99
+- Grande = $3.59
+- Venti = $4.19
+- Each add-in = +$0.25
+
+Sandwiches:
+- Beef = $12.99
+- Chicken = $10.99
+- Salmon = $14.99
+- Cheese = +$1.00
+- Veggies = +$0.30 each
+
+Order Tax:
+- Sales Tax = Subtotal × 6.625%
+- Total = Subtotal + Tax
+
+
+EXPORT TEST
+===========
+
+1. Place several orders (3-5 different orders)
+2. Click "View All Orders"
+3. Click "Export Orders"
+4. Choose location and filename (e.g., orders.txt)
+5. Open the exported file
+6. Verify it contains:
+   - "RU Donuts - All Orders" header
+   - Each order with order number
+   - All items in each order
+   - Subtotal, tax, and total for each
+   - Total orders count
+
+
+WHAT TO LOOK FOR
+================
+
+✓ All windows open without errors
+✓ All prices calculate correctly
+✓ Prices show exactly 2 decimal places
+✓ Items can be added to order
+✓ Items can be removed from order
+✓ Order totals update dynamically
+✓ Orders can be placed
+✓ Orders appear in "All Orders"
+✓ Orders can be canceled
+✓ Orders can be exported
+✓ No crashes or error messages
+✓ All buttons work
+✓ All dropdowns populate correctly
+
+
+If everything works, you're ready to submit! 🎉

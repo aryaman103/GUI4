@@ -76,8 +76,8 @@ public class MainViewController {
     private void onViewCurrentOrder() {
         try {
             openWindow("/view/CurrentOrderView.fxml", "Current Order");
-        } catch (IOException e) {
-            showError("Error opening current order window");
+        } catch (Exception e) {
+            showError("Error: " + (e.getMessage() != null ? e.getMessage() : e.getClass().getSimpleName()));
         }
     }
 
@@ -88,8 +88,8 @@ public class MainViewController {
     private void onViewAllOrders() {
         try {
             openWindow("/view/AllOrdersView.fxml", "All Orders");
-        } catch (IOException e) {
-            showError("Error opening all orders window");
+        } catch (Exception e) {
+            showError("Error: " + (e.getMessage() != null ? e.getMessage() : e.getClass().getSimpleName()));
         }
     }
 

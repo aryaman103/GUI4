@@ -2,11 +2,16 @@ package org.example.controller;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.stage.Stage;
-import org.example.model.*;
+import org.example.model.AddIns;
+import org.example.model.Coffee;
+import org.example.model.CupSize;
+import org.example.model.Order;
 
 /**
  * Controller for the coffee ordering view.
@@ -42,9 +47,6 @@ public class CoffeeViewController implements BaseOrderController {
     @FXML
     private Label statusLabel;
 
-    @FXML
-    private ImageView coffeeImageView;
-
     private Order currentOrder;
 
     /**
@@ -70,23 +72,7 @@ public class CoffeeViewController implements BaseOrderController {
         // Select first item by default
         cupSizeComboBox.getSelectionModel().selectFirst();
 
-        // Load coffee image
-        loadImage();
         updatePrice();
-    }
-
-    /**
-     * Loads the coffee image.
-     */
-    private void loadImage() {
-        try {
-            String imagePath = "/images/coffee.png";
-            Image image = new Image(getClass().getResourceAsStream(imagePath));
-            coffeeImageView.setImage(image);
-        } catch (Exception e) {
-            // Image not found, use placeholder or leave empty
-            coffeeImageView.setImage(null);
-        }
     }
 
     /**

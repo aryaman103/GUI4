@@ -2,11 +2,17 @@ package org.example.controller;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.stage.Stage;
-import org.example.model.*;
+import org.example.model.AddOns;
+import org.example.model.Bread;
+import org.example.model.Order;
+import org.example.model.Protein;
+import org.example.model.Sandwich;
 
 /**
  * Controller for the sandwich ordering view.
@@ -42,9 +48,6 @@ public class SandwichViewController implements BaseOrderController {
     @FXML
     private Label statusLabel;
 
-    @FXML
-    private ImageView sandwichImageView;
-
     private Order currentOrder;
 
     /**
@@ -76,23 +79,7 @@ public class SandwichViewController implements BaseOrderController {
         proteinComboBox.getSelectionModel().selectFirst();
         breadComboBox.getSelectionModel().selectFirst();
 
-        // Load sandwich image
-        loadImage();
         updatePrice();
-    }
-
-    /**
-     * Loads the sandwich image.
-     */
-    private void loadImage() {
-        try {
-            String imagePath = "/images/sandwich.png";
-            Image image = new Image(getClass().getResourceAsStream(imagePath));
-            sandwichImageView.setImage(image);
-        } catch (Exception e) {
-            // Image not found, use placeholder or leave empty
-            sandwichImageView.setImage(null);
-        }
     }
 
     /**
